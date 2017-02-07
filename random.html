@@ -25,41 +25,85 @@
       containerDiv.appendChild(newRow);
     }
 
-    Ejercicio2();
+    createSnake(getRandom(0,9), getRandom(0,9));
 
-    function Ejercicio1(){
-    	//Update the code so it changes the color of it's even or odd cells every half second.
-    var Even = 0;
-    setInterval(function(){
-      var allCells = document.body.getElementsByClassName("cell");
-      for(var i=0; i<allCells.length; i++)
-      {   
-        if((Even === 0 && i%2===0) || (Even === 1 && i%2!==0))
-        {
-          allCells[i].classList.add("active");
-        }
-        if((Even === 0 && i%2!==0) || (Even === 1 && i%2===0))
-        {
-          allCells[i].classList.remove("active");
-        }
-      }
-      if(Even === 0)
-        Even = 1;
-      else
-        Even = 0;
+    //crea y renderiza la cabeza de la culebra en la posición especificada
+    function createSnake(x,y){
+      var matrix = document.body.getElementsByClassName("cell");
+      width = 10;
 
-    }, 500)
+      var headCell = matrix[cellTranslate(x,y,width)];
+      headCell.classList.add("active");
     }
+
+    //traduce un par de posiciones x,y de un arreglo bidimensional, en una posición unidimensional
+    function cellTranslate(x,y,width){
+        return width * y + x;
+      }
+
+    //obtiene un némero aleatorio entre el rango especificado(incluyente)
+    function getRandom(min, max) { 
+      min = Math.ceil(min);
+      max = Math.floor(max);
+      return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+
+
+
+
+    // function Ejercicio1(){
+    // 	//Update the code so it changes the color of it's even or odd cells every half second.
+    // var Even = 0;
+    // setInterval(function(){
+    //   var allCells = document.body.getElementsByClassName("cell");
+    //   for(var i=0; i<allCells.length; i++)
+    //   {   
+    //     if((Even === 0 && i%2===0) || (Even === 1 && i%2!==0))
+    //     {
+    //       allCells[i].classList.add("active");
+    //     }
+    //     if((Even === 0 && i%2!==0) || (Even === 1 && i%2===0))
+    //     {
+    //       allCells[i].classList.remove("active");
+    //     }
+    //   }
+    //   if(Even === 0)
+    //     Even = 1;
+    //   else
+    //     Even = 0;
+
+    // }, 500)
+    // }
 
     //Update the code so you can click on one of the cells to make it active. Please take into account that only one cell can be active at a time.
-    function Ejercicio2(cell){
-      var activeCells = document.body.getElementsByClassName("cell");
-      for(var i = 0; i<activeCells.length;i++)
-      {
-        activeCells[i].classList.remove("active");
-      }
-      cell.classList.add("active");
-    }
+    // function Ejercicio2(cell){
+    //   var activeCells = document.body.getElementsByClassName("cell");
+    //   for(var i = 0; i<activeCells.length;i++)
+    //   {
+    //     activeCells[i].classList.remove("active");
+    //   }
+    //   cell.classList.add("active");
+    // }
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     function setActivewithKeyboard(event)
     {
