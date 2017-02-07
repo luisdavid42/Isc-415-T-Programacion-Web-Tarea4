@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="grid.css" media="screen" title="no title" charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <div class="container">
+    </div>
+
+     <script>
+
+    var containerDiv = document.body.getElementsByClassName("container")[0];
+    //keyboard input
+    //document.body.setAttribute("onkeydown", "setActivewithKeyboard(event)");
+
+    for(var i=0; i<100; i++)
+    {
+      var newRow = document.createElement("div");
+      newRow.classList.add("cell");
+      newRow.setAttribute("onclick", "Ejercicio2(this)");
+      var newRowElement = document.createTextNode("");
+      newRow.appendChild(newRowElement);
+      containerDiv.appendChild(newRow);
+    }
+
+    Ejercicio2();
+
+    function Ejercicio1(){
+    	//Update the code so it changes the color of it's even or odd cells every half second.
+    var Even = 0;
+    setInterval(function(){
+      var allCells = document.body.getElementsByClassName("cell");
+      for(var i=0; i<allCells.length; i++)
+      {   
+        if((Even === 0 && i%2===0) || (Even === 1 && i%2!==0))
+        {
+          allCells[i].classList.add("active");
+        }
+        if((Even === 0 && i%2!==0) || (Even === 1 && i%2===0))
+        {
+          allCells[i].classList.remove("active");
+        }
+      }
+      if(Even === 0)
+        Even = 1;
+      else
+        Even = 0;
+
+    }, 500)
+    }
+
+    //Update the code so you can click on one of the cells to make it active. Please take into account that only one cell can be active at a time.
+    function Ejercicio2(cell){
+      var activeCells = document.body.getElementsByClassName("cell");
+      for(var i = 0; i<activeCells.length;i++)
+      {
+        activeCells[i].classList.remove("active");
+      }
+      cell.classList.add("active");
+    }
+
+    function setActivewithKeyboard(event)
+    {
+      var activeCells = document.body.getElementsByClassName("cell");
+      var activeCellNumber = -1;
+      for (var i = 0; i<activeCells.length; i++)
+      {
+        if(activeCells[i].classList.contains("active"))
+        {
+          activeCellNumber = i;
+          
+        }
+      }
+      const keyName = event.key;
+
+		  //izquierda
+		  if (keyName === 'a'){
+		    if(activeCellNumber-1>=0) {activeCells[activeCellNumber].classList.remove("active"); activeCells[activeCellNumber-1].classList.add("active")};
+		    return;
+		  }
+
+		  //abajo
+		  if (keyName === 's') {
+		    if(activeCellNumber+10<100) {activeCells[activeCellNumber].classList.remove("active"); activeCells[activeCellNumber+10].classList.add("active")};
+		    return;
+		  }
+
+		  //derecha
+		  if (keyName === 'd') {
+		    if(activeCellNumber+1<100) {activeCells[activeCellNumber].classList.remove("active"); activeCells[activeCellNumber+1].classList.add("active")};
+		    return;
+		  }
+
+		  //arriba
+		  if (keyName === 'w') {
+		    if(activeCellNumber-10>=0) {activeCells[activeCellNumber].classList.remove("active"); activeCells[activeCellNumber-10].classList.add("active")};
+		    return;
+		  }
+		}
+    
+
+    </script>
+  </body>
+</html>
